@@ -1,5 +1,8 @@
 App Engine application for the Udacity training course.
 
+## Link to cloud
+- [Cloud][7]
+
 ## Products
 - [App Engine][1]
 
@@ -32,3 +35,4 @@ App Engine application for the Udacity training course.
 [4]: https://console.developers.google.com/
 [5]: https://localhost:8080/
 [6]: https://developers.google.com/appengine/docs/java/tools/maven
+[7]: https://trynna-study-cloud-computing.appspot.com/
