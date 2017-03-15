@@ -47,7 +47,7 @@ public class ConferenceApi {
     // conforms to the fields defined in ProfileForm
 
     // DONE 1 Pass the ProfileForm parameter
-    // TODO 2 Pass the User parameter
+    // DONE 2 Pass the User parameter
     public Profile saveProfile(ProfileForm profileForm, User user) throws UnauthorizedException {
 
         String userId = null;
@@ -85,10 +85,15 @@ public class ConferenceApi {
 
         // Create a new Profile entity from the
         // userId, displayName, mainEmail and teeShirtSize
-        Profile profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
-
-        // TODO 3 (In Lesson 3)
+        Profile profile = getProfile(user);
+        if(profile == null)
+        	profile = new Profile(userId, displayName, mainEmail, teeShirtSize);
+        else
+        	profile.update(displayName,teeShirtSize);
+        
+        // DONE 3 (In Lesson 3)
         // Save the Profile entity in the datastore
+        ofy().save().entity(profile).now();
 
         // Return the profile
         return profile;
@@ -110,11 +115,11 @@ public class ConferenceApi {
             throw new UnauthorizedException("Authorization required");
         }
 
-        // TODO
+        // DONE
         // load the Profile Entity
-        String userId = ""; // TODO
-        Key key = null; // TODO
-        Profile profile = null; // TODO load the Profile entity
+        String userId = user.getUserId(); // DONE
+        Key key = Key.create(Profile.class,userId); // DONE
+        Profile profile = (Profile)ofy().load().key(key).now(); // DONE load the Profile entity
         return profile;
     }
 }
